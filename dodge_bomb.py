@@ -1,9 +1,7 @@
 import random
 import pygame as pg
+
 import sys
-
-
-
 
 delta = {
     pg.K_UP: [0, -1],
@@ -11,6 +9,8 @@ delta = {
     pg.K_LEFT: [-1, 0],
     pg.K_RIGHT: [+1, 0],
     }
+
+accs = [a for a in range(1, 11)]  #加速度のリスト
 
 def check_bound(scr_rct: pg.Rect, obj_rct: pg.Rect) -> tuple[bool, bool]:
     """
@@ -36,6 +36,8 @@ def main():
     kk_rct = kk_img.get_rect()
     kk_rct.center = 900,400
     tmr = 0
+    overtime = -1
+    gameover = False
 
     bb_img = pg.Surface((20, 20))  # 練習１ 
     pg.draw.circle(bb_img, (255, 0, 0), (10, 10), 10)
@@ -61,17 +63,10 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return 0
-
         tmr += 1
-        overtime = -1
-        gameover = False
-
-
         key_lst = pg.key.get_pressed()
         for k, mv in delta.items():
             if key_lst[k]:
-            
-        
                 kk_rct.move_ip(mv)
         
         if check_bound(screen.get_rect(), kk_rct) != (True, True):
@@ -92,22 +87,15 @@ def main():
             #演習課題３
             kk_img = pg.image.load("ex02/fig/8.png")
             kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
-
             overtime = tmr
             gameover = True
-            if gameover:
-
-                if (tmr - overtime) > 200:
-                    return
-
-
-            
-
-            
-
-
+        if gameover:
+            if (tmr - overtime) > 200:
+                return
+                
         pg.display.update()
         clock.tick(1000)
+        print(overtime)
 
 
 if __name__ == "__main__":
