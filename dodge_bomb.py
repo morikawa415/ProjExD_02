@@ -75,6 +75,8 @@ def main():
             vx *= -1
         if not tate:  # 縦方向にはみ出ていたら
             vy *= -1
+        if kk_rct.colliderect(bb_rct):  # 練習６
+            return
 
 
         pg.display.update()
