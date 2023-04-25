@@ -9,8 +9,9 @@ delta = {
     pg.K_UP: [0, -1],
     pg.K_DOWN: [0, +1],
     pg.K_LEFT: [-1, 0],
-    pg.K_RIGHT: [+1, 0]
+    pg.K_RIGHT: [+1, 0],
     }
+
 def check_bound(scr_rct: pg.Rect, obj_rct: pg.Rect) -> tuple[bool, bool]:
     """
     オブジェクトが画面内or画面外を判定し，真理値タプルを返す関数
@@ -45,6 +46,15 @@ def main():
     bb_rct = bb_img.get_rect()
     bb_rct.center = x, y
 
+    #kk_img = {
+    #    (0, -1):pg.transform.rotozoom(kk_img, 270, 1.0),
+    #    #(+1, -1):pg.transform.rotozoom(kk_img, 225, 1.0),
+    #    (+1, 0):pg.transform.rotozoom(kk_img, 180, 1.0),
+    #    #(+1, +1):pg.transform.rotozoom(kk_img, 135, 1.0)
+    #    (0, +1):pg.transform.rotozoom(kk_img, 90, 1.0),
+    #    (-1, 0):pg.transform.rotozoom(kk_img, 0, 1.0)
+    #    }
+
 
     while True:
         for event in pg.event.get():
@@ -52,6 +62,8 @@ def main():
                 return 0
 
         tmr += 1
+        overtime = -1
+        gameover = False
 
 
         key_lst = pg.key.get_pressed()
@@ -76,7 +88,21 @@ def main():
         if not tate:  # 縦方向にはみ出ていたら
             vy *= -1
         if kk_rct.colliderect(bb_rct):  # 練習６
-            return
+            #演習課題３
+            kk_img = pg.image.load("ex02/fig/8.png")
+            kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
+
+            overtime = tmr
+            gameover = True
+            if gameover:
+
+                if (tmr - overtime) > 200:
+                    return
+
+
+            
+
+            
 
 
         pg.display.update()
