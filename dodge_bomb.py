@@ -45,16 +45,17 @@ def main():
     vx, vy = +1, +1
     bb_rct = bb_img.get_rect()
     bb_rct.center = x, y
-
-    #kk_img = {
-    #    (0, -1):pg.transform.rotozoom(kk_img, 270, 1.0),
-    #    #(+1, -1):pg.transform.rotozoom(kk_img, 225, 1.0),
-    #    (+1, 0):pg.transform.rotozoom(kk_img, 180, 1.0),
-    #    #(+1, +1):pg.transform.rotozoom(kk_img, 135, 1.0)
-    #    (0, +1):pg.transform.rotozoom(kk_img, 90, 1.0),
-    #    (-1, 0):pg.transform.rotozoom(kk_img, 0, 1.0)
-    #    }
-
+    """
+    kk_img = {
+        (0, -1):pg.transform.rotozoom(kk_img, 270, 1.0),
+        (+1, -1):pg.transform.rotozoom(kk_img, 225, 1.0),
+        (+1, 0):pg.transform.rotozoom(kk_img, 180, 1.0),
+        (+1, +1):pg.transform.rotozoom(kk_img, 135, 1.0)
+        (0, +1):pg.transform.rotozoom(kk_img, 90, 1.0),
+        (-1, 0):pg.transform.rotozoom(kk_img, 0, 1.0)
+        }
+    """    
+    #追加課題１の試作
 
     while True:
         for event in pg.event.get():
